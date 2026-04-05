@@ -1,8 +1,12 @@
 import os
+from dotenv import load_dotenv
 from google.adk.agents.llm_agent import Agent
 
+load_dotenv()
+model_name = os.getenv("MODEL", "gemini-2.5-flash")
+
 root_agent = Agent(
-    model=os.getenv("MODEL", "gemini-2.0-flash"),
+    model=model_name,
     name='news_analyzer',
     description='Analyzes news text and returns summary, sentiment and takeaway.',
     instruction="""You are a news analysis agent. When given any text or news:
